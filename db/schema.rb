@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2019_07_24_155621) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "recipes_ingredients", id: false, force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "ingredient_id", null: false
+    t.string "quantity"
+    t.index ["ingredient_id", "recipe_id"], name: "index_recipes_ingredients_on_ingredient_id_and_recipe_id"
+    t.index ["recipe_id", "ingredient_id"], name: "index_recipes_ingredients_on_recipe_id_and_ingredient_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "bio"
